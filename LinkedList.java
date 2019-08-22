@@ -185,6 +185,26 @@ public class LinkedList {
         return list;
     }
 
+    // **** Remove Duplicates from "SORTED LINKED LIST" *****
+    // Example: Input 1->2->2->3->5     Output 1->2->3->5
+    public static LinkedList removeDuplicatesSortedList(LinkedList list) {
+        Node currentNode = list.head.next, prevNode = list.head;
+        if (prevNode == null) {
+            System.out.println("List is empty");
+            return list;
+        }
+        while (currentNode != null) {
+            if (prevNode.data == currentNode.data) {
+                prevNode.next = currentNode.next;
+                currentNode = currentNode.next;
+            } else {
+                prevNode = currentNode;
+                currentNode = currentNode.next;
+            }
+        }
+        return list;
+    }
+
     // **** Reverse the LinkedList *********************
     public static LinkedList reverseList(LinkedList list) {
         Node currentNode = list.head, nextNode = currentNode.next, afterNode = null;
@@ -203,29 +223,19 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         list = insertAtEnd(list, 1);
+        list = insertAtEnd(list, 1);
         list = insertAtEnd(list, 2);
-        list = insertAtEnd(list, 7);
-        list = insertAtEnd(list, 4);
-        list = insertAtEnd(list, 2);
+        list = insertAtEnd(list, 3);
+        list = insertAtEnd(list, 3);
 
         printList(list);
         System.out.print("\n");
-        // removeDuplicates(list);
-        reverseList(list);
+        list = insertAtBeg(list, 1);
         printList(list);
         System.out.print("\n");
-        list = insertAtBeg(list, 38);
+        removeDuplicatesSortedList(list);
         printList(list);
-        System.out.print("\n");
-        list = insertAtMidByKey(list, 100, 40);
-        printList(list);
-        deleteByKey(list, 100);
-        printList(list);
-        deleteList(list);
         System.out.print("\n");
         isEvenLength(list);
-        //System.out.println(length(list));
-        // reversePart(list, 3, 7);
-        // printList(list);
     }
 }
