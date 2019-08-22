@@ -17,25 +17,25 @@ public class LinkedList {
 
     // **** Inserting the Node at the "BEGINING" of linkedlist ****
     public static LinkedList insertAtBeg(LinkedList list, int data) {
-        Node new_node = new Node(data);
-        new_node.next = list.head;
-        list.head = new_node;
+        Node newNode = new Node(data);
+        newNode.next = list.head;
+        list.head = newNode;
         return list;
     }
 
     // **** Inserting the Node at the "END" of linkedlist *********
     public static LinkedList insertAtEnd(LinkedList list, int data) {
-        Node new_node = new Node(data);
-        new_node.next = null;
+        Node newNode = new Node(data);
+        newNode.next = null;
 
         if (list.head == null) {
-            list.head = new_node;
+            list.head = newNode;
         } else {
             Node last = list.head;
             while (last.next != null) {
                 last = last.next;
             }
-            last.next = new_node;
+            last.next = newNode;
         }
         return list;
     }
@@ -43,51 +43,90 @@ public class LinkedList {
     // **** Inserting the Node in "MID" of linkedlist after another node "Key" ****
     // ** This code inserts the node after the first occurence of the key only **
     public static LinkedList insertAtMidByKey(LinkedList list, int key, int data) {
-        Node new_node = new Node(data), current_node = list.head;
-        if (current_node == null) {
+        Node newNode = new Node(data), currentNode = list.head;
+        if (currentNode == null) {
             System.out.println("List is empty");
             return list;
         }
-        while (current_node != null && current_node.data != key) {
-            current_node = current_node.next;
+        while (currentNode != null && currentNode.data != key) {
+            currentNode = currentNode.next;
         }
-        if (current_node == null ) {
+        if (currentNode == null ) {
             System.out.println("Key not found in the linkedlist");
         } else {
-            new_node.next = current_node.next;
-            current_node.next = new_node;
+            newNode.next = currentNode.next;
+            currentNode.next = newNode;
             
         }
         return list;
     }
 
+    // **** Find the length of the linked list **
+    public static int length(LinkedList list) {
+        Node currentNode = list.head;
+        int length = 0;
+        if (currentNode == null) {
+            return length;
+        }
+        while (currentNode != null) {
+            currentNode = currentNode.next;
+            length += 1;
+        }
+        return length;
+    }
+
+    // **** Find whether the length of linkedlist is even or not ***
+    //    **  Approach includes without finding actual length  **
+    public static void isEvenLength(LinkedList list) {
+        Node slowPtr = list.head, fastPtr = slowPtr;
+        if (slowPtr == null) {
+            System.out.println("The list is empty");
+            return;
+        }
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+        }
+        //  **  HERE fast_ptr == null is checked first  ** 
+        //  **  BECAUSE if fast_ptr.next is checked on  ** 
+        //  **  condition that fast_ptr is already null.**
+        //  **  IT WILL THROW NULL EXCEPTION ERROR      **
+        if (fastPtr == null) {
+            System.out.println("The list is of even length");
+        } else {
+            System.out.println("The list is of odd length");
+        }
+        return;
+    }
+
+
     // **** Print the Linkedlist ***************
     public static void printList(LinkedList list) {
-        Node current_node = list.head;
-        while (current_node != null) {
-            System.out.print(current_node.data + " ");
-            current_node = current_node.next;
+        Node currentNode = list.head;
+        while (currentNode != null) {
+            System.out.print(currentNode.data + " ");
+            currentNode = currentNode.next;
         }
     }
 
     // **** Delete by Key ***************************************
     public static LinkedList deleteByKey(LinkedList list, int key) {
-        Node current_node = list.head, prev_node = null;
-        if (current_node == null) {
+        Node currentNode = list.head, prevNode = null;
+        if (currentNode == null) {
             System.out.println("List is empty");
             return list;
         }
-        if (current_node.data == key) {
-            list.head = current_node.next;
+        if (currentNode.data == key) {
+            list.head = currentNode.next;
             System.out.println("Key found at first node and deleted");
             return list;
         }
-        while (current_node.next != null && current_node.data != key) {
-            prev_node = current_node;
-            current_node = current_node.next;
+        while (currentNode.next != null && currentNode.data != key) {
+            prevNode = currentNode;
+            currentNode = currentNode.next;
         }
-        if (current_node.data == key) {
-            prev_node.next = current_node.next;
+        if (currentNode.data == key) {
+            prevNode.next = currentNode.next;
             System.out.println("Key found and deleted");
         } else {
             System.out.println("Key not found");
@@ -97,28 +136,28 @@ public class LinkedList {
 
     // **** Delete By Index *****************************************
     public static LinkedList deleteByIndex(LinkedList list, int index) {
-        Node current_node = list.head, prev_node = null;
-        if (current_node == null) {
+        Node currentNode = list.head, prevNode = null;
+        if (currentNode == null) {
             System.out.println("List is empty");
             return list;
         }
         if (index == 0) {
-            list.head = current_node.next;
+            list.head = currentNode.next;
             return list;
         }
         int counter = 0;
-        while (current_node != null) {
+        while (currentNode != null) {
             if (counter == index) {
-                prev_node.next = current_node.next;
+                prevNode.next = currentNode.next;
                 System.out.println("Key found and deleted");
                 break;
             } else {
-                prev_node = current_node;
-                current_node = current_node.next;
+                prevNode = currentNode;
+                currentNode = currentNode.next;
                 counter += 1;
             }
         }
-        if (current_node == null) {
+        if (currentNode == null) {
             System.out.println("Current index is not available");
         }
         return list;
@@ -131,16 +170,16 @@ public class LinkedList {
 
     // **** Remove Duplicates from the LinkedList ***********
     public static LinkedList removeDuplicates(LinkedList list) {
-        Node current_node = list.head, prev_node = null;
-        ArrayList<Integer> number_list = new ArrayList<Integer>();
-        while (current_node != null) {
-            if (number_list.indexOf(current_node.data) == -1) {
-                number_list.add(current_node.data);
-                prev_node = current_node;
-                current_node = current_node.next;
+        Node currentNode = list.head, prevNode = null;
+        ArrayList<Integer> numberList = new ArrayList<Integer>();
+        while (currentNode != null) {
+            if (numberList.indexOf(currentNode.data) == -1) {
+                numberList.add(currentNode.data);
+                prevNode = currentNode;
+                currentNode = currentNode.next;
             } else {
-                prev_node.next = current_node.next;
-                current_node = current_node.next;
+                prevNode.next = currentNode.next;
+                currentNode = currentNode.next;
             }
         }
         return list;
@@ -148,16 +187,16 @@ public class LinkedList {
 
     // **** Reverse the LinkedList *********************
     public static LinkedList reverseList(LinkedList list) {
-        Node current_node = list.head, next_node = current_node.next, after_node = null;
-        current_node.next = null;
+        Node currentNode = list.head, nextNode = currentNode.next, afterNode = null;
+        currentNode.next = null;
         //System.out.print(next_node.next);
-        while (next_node != null) {
-            after_node = next_node.next;
-            next_node.next = current_node;
-            current_node = next_node;
-            next_node = after_node;
+        while (nextNode != null) {
+            afterNode = nextNode.next;
+            nextNode.next = currentNode;
+            currentNode = nextNode;
+            nextNode = afterNode;
         }
-        list.head = current_node;
+        list.head = currentNode;
         return list;
     }
 
@@ -165,10 +204,9 @@ public class LinkedList {
         LinkedList list = new LinkedList();
         list = insertAtEnd(list, 1);
         list = insertAtEnd(list, 2);
-        list = insertAtEnd(list, 3);
+        list = insertAtEnd(list, 7);
         list = insertAtEnd(list, 4);
         list = insertAtEnd(list, 2);
-        list = insertAtEnd(list, 3);
 
         printList(list);
         System.out.print("\n");
@@ -183,5 +221,11 @@ public class LinkedList {
         printList(list);
         deleteByKey(list, 100);
         printList(list);
+        deleteList(list);
+        System.out.print("\n");
+        isEvenLength(list);
+        //System.out.println(length(list));
+        // reversePart(list, 3, 7);
+        // printList(list);
     }
 }
