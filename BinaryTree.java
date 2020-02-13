@@ -70,3 +70,4 @@ public class BinaryTree {
             inorderTraversal(bst.root);
         }
 }
+
