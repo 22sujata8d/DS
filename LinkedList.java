@@ -239,3 +239,4 @@ public class LinkedList {
         isEvenLength(list);
     }
 }
+
