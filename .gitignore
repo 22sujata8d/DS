@@ -1,6 +1,40 @@
 
-# Created by https://www.gitignore.io/api/java,linux
-# Edit at https://www.gitignore.io/?templates=java,linux
+# Created by https://www.gitignore.io/api/c++,java,linux
+# Edit at https://www.gitignore.io/?templates=c++,java,linux
+
+### C++ ###
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
 
 ### Java ###
 # Compiled class file
@@ -42,4 +76,4 @@ hs_err_pid*
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-# End of https://www.gitignore.io/api/java,linux
+# End of https://www.gitignore.io/api/c++,java,linux
