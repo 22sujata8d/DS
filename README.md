@@ -1,11 +1,10 @@
 # Data Structures and Algorithms
-<summary>Graphs</summary>
 
 This repository contains the basic implemenatation of data structures in C++ and the famous algorithms and questions using them. 
 
-# Repository Structure
-.
- * [Heaps](./Heaps)
+## Repository Structure
+
+* [Heaps](./Heaps)
    * [MaxHeap.cpp](./Heaps/MaxHeap.cpp)
  * [Tries](./Tries)
    * [tries.cpp](./Tries/tries.cpp)
@@ -14,8 +13,7 @@ This repository contains the basic implemenatation of data structures in C++ and
    * [Graph.cpp](./Graphs/Graph.cpp)
    * [GraphByList.cpp](./Graphs/GraphByList.cpp)
  * [Strings](./Strings)
-   * [RabinKarp.cpp](./Strings/RabinKarp.cpp)
- * [README.md](./README.md)
+     * [RabinKarp.cpp](./Strings/RabinKarp.cpp)
 
 ## Topics Worklist
 - [ ] Linked List
@@ -25,3 +23,4 @@ This repository contains the basic implemenatation of data structures in C++ and
 - [ ] Improved implementation of tries
 
 
+ 
